@@ -1,0 +1,27 @@
+Interview
+
+*** first time i use git even  i upload appsetting then I comes to know ,want use gitignore.
+
+
+
+
+
+
+
+ProductController:ControllerBase
+
+
+dotnet --info
+  get host vesrion 3.1.8
+
+go nuget package 
+   Microsoft.EntityFrameworkCore
+	 Microsoft.EntityFrameworkCore.Sqlite
+
+	3.1.8
+
+Git
+---
+git status
+
+git init
