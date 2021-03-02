@@ -25,3 +25,47 @@ Git
 git status
 
 git init
+
+git remote add origin https://github.com/abhilashkuttath/sklogic.git
+git branch -M main
+git push -u origin main
+
+hre i used git push origin master --force   //thi scommand
+
+repository pattern
+-------------
+decouple bussiness code and data access
+separation of concern
+minimise duplicate qury logic
+testability.
+
+for depndency injection need to add configure service,no importance in position
+but in middelware servcice oreder is important.
+
+lifetime is like scoped
+  tranceint for individual method ,short life time,repository will create and destroy on bases of individual method.
+singleton  --nver will destroy untill the application shut down.
+addcoped  --
+
+
+added new domain class so,I just drop and  recreate db
+
+
+dotnet ef database drop -p Infrastructure -s API        //hr
+
+C:\AngularProjects\skinett>dotnet ef migrations remove -p Infrastructure -s API
+
+C:\AngularProjects\skinett>dotnet ef database drop -p Infrastructure -s API
+
+recraete
+ C:\AngularProjects\skinett>dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
+---------------------------
+https://selfregistration.cowin.gov.in/appointment
+https://selfregistration.cowin.gov.in/
+
+
+firstordefault
+siggleOrDefault == If have more then one element show exception
+
+Iquirable = chaining
