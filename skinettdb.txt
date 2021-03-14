@@ -1,0 +1,73 @@
+features 
+ public class Feature
+    {
+        public int Id { get; set; }
+        
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+    }
+
+
+Make
+
+ public class Make
+    {
+        public int Id { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Name { get; set; }
+        public ICollection<Model> Models { get; set; }
+
+        public Make()
+        {
+            Models = new Collection<Model>();
+        }
+    }
+
+
+{
+    [Table("Models")]
+    public class Model
+    {
+       public int Id { get; set; }
+       
+       [Required]
+       [StringLength(255)]
+       public string Name { get; set; } 
+
+       public Make Make { get; set; }
+
+       public int MakeId { get; set; }
+    }
+}
+
+vehicle
+
+ public int Id { get; set; }
+ public int ModelId { get; set; }
+ public Model Model{ get; set; }
+bool IsRegisterd
+
+string contactName
+string COntactEmail
+string ContactPhone
+DAtaTime LAstUpdate
+
+public ICollection<VaehicleFeature> Features
+public Vehicle()
+{Feturs=new Collection<VehicleFetures>();
+
+
+In Entitiy core 6 not support many to many
+
+Features  n --------- n Vehicle
+Features 1-- n -Vehicle fetures- n Vehicle
+
+VehicleFeature class
+public int VehicleId{get;set}
+public int FeatureId{get;set}
+public Vehicle Vehicle{get;set}
+public feature Feature{get;set}
+
+

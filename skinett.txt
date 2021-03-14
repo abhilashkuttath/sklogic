@@ -1,12 +1,25 @@
 Interview
-
+405 method not found.
 *** first time i use git even  i upload appsetting then I comes to know ,want use gitignore.
 
+*** Genric repository ,replace productType with place holder and compile time placed with actual type.
+*** public ICollection<Model> Models { get; set; }
+ //make.Models=new Collection<Model>()//here and forget to initialize it somewhere else in the code you're
+       going to get a null reference exception.
+
+//better use constructor to intialize ther
+public make()
+{
+Models = new Collection<Model>();
+}
 
 
+*** large dtabase round trip is okey,load model with make better small db
 
 
+composit primary key-uniquely identify vehicle table with two column, then we know given fetaures is not dup;licated on given vehicle.
 
+IAction Result==In whci we can return razor views,json objects,http responses
 
 ProductController:ControllerBase
 
@@ -69,3 +82,10 @@ firstordefault
 siggleOrDefault == If have more then one element show exception
 
 Iquirable = chaining
+
+
+git add .
+git commit -m "End of section3"
+git push origin master
+
+int? brandId, int? typeId

@@ -21,9 +21,9 @@ namespace API.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts([FromQuery] FilterSort queryObj)
         {
-            var products = await _repo.GetProductsAsync();
+            var products = await _repo.GetProductsAsync(queryObj);
             return Ok(products);
         }
 

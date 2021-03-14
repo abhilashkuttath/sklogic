@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -27,12 +28,27 @@ namespace Infrastructure.Data
             .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(FilterSort queryObj)
         {
-            return await _context.Products
+            var query = _context.Products
             .Include(p => p.ProductType)
             .Include(p => p.ProductBrand)
-            .ToListAsync();
+            .AsQueryable();
+            if (!string.IsNullOrEmpty(queryObj.Search))
+                query = query.Where(x => x.Name.ToLower().Contains(queryObj.Search));
+            if (queryObj.brandId.HasValue)
+                query = query.Where(v => v.ProductBrandId == queryObj.brandId);
+            if (queryObj.typeId.HasValue)
+                query = query.Where(v => v.ProductTypeId == queryObj.typeId);
+
+            if (queryObj.SortBy == "priceAsc")
+                query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Name) : query.OrderByDescending(v => v.Name);
+            if (queryObj.SortBy == "priceDesc")
+                query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Price) : query.OrderByDescending(v => v.Price);
+
+
+
+            return await query.ToListAsync();
 
         }
 
