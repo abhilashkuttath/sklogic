@@ -1,4 +1,6 @@
+ssl
 obj
 bin
 appsettings.json
 *.db
+/node_modules
