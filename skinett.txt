@@ -142,5 +142,41 @@ put root in service page so dont want to initailize in app module
 
 Automapper
 ----------
+for flattening response.result may hav eaditional array.
+
 we dont add port number on databsae ,auto mapper we can specifically
    adjust like, photo url.
+nuget
+
+AutoMapper.Extensions.Microsoft
+
+installed 7.0.0
+
+return Ok(await _repo.GetProductByIdAsync(id));
+
+
+ public async Task<ActionResult<Product>> GetProduct(int id)
+        {
+            var product = await _repo.GetProductByIdAsync(id);
+            return _mapper.Map<Product, ProductToReturnDto>(product);
+
+        }
+
+
+
+ public async Task<Actiommmmmmm  Id=product.Id,
+                Name = product.Name
+            }
+            return _mapper.Map<Product, ProductToReturnDto>(product);
+
+        }
+jn mmmmmmmmmmmmm
+
+
+public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string PictureUrl { get; set; }
+        public string ProductBrand { get; set; }
+        public string ProductType { get; set; }

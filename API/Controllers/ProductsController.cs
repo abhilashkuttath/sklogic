@@ -25,10 +25,30 @@ namespace API.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts([FromQuery] FilterSort queryObj)
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts([FromQuery] FilterSort queryObj)
         {
+            //first iteration
+            // var products = await _repo.GetProductsAsync(queryObj);
+            // return Ok(products);
+
+            //second
+
             var products = await _repo.GetProductsAsync(queryObj);
-            return Ok(products);
+            //can use projection
+            // return products.Select(product => new ProductToReturnDto
+            // {
+            //     Id = product.Id,
+            //     Name = product.Name,
+            //     Description = product.Description,
+            //     ProductBrand = product.ProductBrand.Name
+            // }).ToList();
+
+            //last good way using AUtoMapper
+
+            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+
+
+
         }
 
         [HttpGet("{id}")]
@@ -36,7 +56,15 @@ namespace API.Controllers
         {
             var product = await _repo.GetProductByIdAsync(id);
 
-            return _mapper.Map<Product, ProductToReturnDto>(product);
+            return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
+
+            //with out automapper
+            // var product = await _repo.GetProductByIdAsync(id);
+            // return new ProductToReturnDto
+            // {
+            //     Id=product.Id,
+            //     Name = product.Name
+            // }
 
         }
 
