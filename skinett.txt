@@ -93,3 +93,54 @@ int? brandId, int? typeId
 
 --------
 ng new CLient //new project start in angular
+
+
+cd src/app  - entering into app folder
+
+ng g c nav-bar --skip-tests
+ng g c --help
+
+
+when give position absolute should give parent relative.
+
+ngOnChanges()
+-----------
+respond when data bound input property change.works before ngOnInit.
+
+ngOnInit()
+----------
+best for api calles
+ngDocheck
+----------
+imediately after onchages and oninit.
+
+
+Observable
+----------
+sequence of items that arrive asynchrounously over time.
+
+
+module
+-----
+common module include ng For
+
+module always in import
+
+
+ng g c shop --flat --skip-tests  //inside shop folder,it alresy creqate when i created module
+ng g c shop --flat --skip-tests
+ng g s shop --skip-tests --flat
+ng g m shop-routing --flat
+
+
+Angular Service
+---------
+Angular service are single threaded,they are intitialized when application start.
+good place to call http services, and api calls.
+
+put root in service page so dont want to initailize in app module
+
+Automapper
+----------
+we dont add port number on databsae ,auto mapper we can specifically
+   adjust like, photo url.

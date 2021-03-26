@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -15,9 +17,11 @@ namespace API.Controllers
     {
         private readonly IProductRepository _repo;
 
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository repo)
+        public ProductsController(IProductRepository repo, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repo;
         }
         [HttpGet]
@@ -28,9 +32,12 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
-            return await _repo.GetProductByIdAsync(id);
+            var product = await _repo.GetProductByIdAsync(id);
+
+            return _mapper.Map<Product, ProductToReturnDto>(product);
+
         }
 
         [HttpGet("brands")]
