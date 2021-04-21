@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Dtos;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -45,7 +46,12 @@ namespace API.Controllers
 
             //last good way using AUtoMapper
 
-            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
+            // var totalItems = await _repo.CountAsync(data);
+            var totalItems = products.Count();
+            return Ok(new Pagination<ProductToReturnDto>(queryObj.PageIndex,
+            queryObj.PageSize, totalItems, data));
 
 
 

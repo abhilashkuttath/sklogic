@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,12 @@ namespace Infrastructure.Data
     public class ProductRepository : IProductRepository
     {
         private readonly StoreContext _context;
+
+
+        public bool IsPagingEnabled { get; private set; }
+        public int Skip { get; private set; }
+        public int Take { get; private set; }
+
         public ProductRepository(StoreContext context)
         {
             _context = context;
@@ -41,10 +48,22 @@ namespace Infrastructure.Data
             if (queryObj.typeId.HasValue)
                 query = query.Where(v => v.ProductTypeId == queryObj.typeId);
 
+            // if (queryObj.SortBy == "name")
+            //     query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Name) : query.OrderByDescending(v => v.Name);
+            // if (queryObj.SortBy == "priceAsc")
+            //     query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Price) : query.OrderByDescending(v => v.Price);
+            // if (queryObj.SortBy == "priceDesc")
+            //     query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Name) : query.OrderByDescending(v => v.Price);
+            if (queryObj.SortBy == "name")
+                query = query.OrderBy(v => v.Name);
             if (queryObj.SortBy == "priceAsc")
-                query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Name) : query.OrderByDescending(v => v.Name);
+                query = query.OrderBy(v => v.Price);
             if (queryObj.SortBy == "priceDesc")
-                query = (queryObj.IsSortAscending) ? query.OrderBy(v => v.Price) : query.OrderByDescending(v => v.Price);
+                query = query.OrderByDescending(v => v.Price);
+
+            // query = query.Skip(1).Take(6);
+
+            query = query.Skip(queryObj.PageSize * (queryObj.PageIndex - 1)).Take(queryObj.PageSize);
 
 
 
@@ -52,9 +71,21 @@ namespace Infrastructure.Data
 
         }
 
+        public void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
+        }
+
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
         {
             return await _context.ProductTypes.ToListAsync();
         }
+
+        // public async Task<int> CountAsync(var query)
+        // {
+        //     return await query.CountAsync();
+        // }
     }
 }

@@ -10,5 +10,6 @@ namespace Core.Interfaces
         Task<IReadOnlyList<Product>> GetProductsAsync(FilterSort queryObj);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
         Task<IReadOnlyList<ProductType>> GetProductTypesAsync();
+        // Task<int> CountAsync();
     }
 }
