@@ -190,3 +190,7 @@ git push origin master
 routerLink
 
 <RouterOutlet><RouterOutlet>
+
+
+APi Error Handling
+------------------
