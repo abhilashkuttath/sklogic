@@ -194,3 +194,14 @@ routerLink
 
 APi Error Handling
 ------------------
+not found 404
+Internal server error 500  --server error
+bad request 400  // validation eror
+
+
+
+ng g //get all
+
+ng g interceptor error
+
+add app provide
