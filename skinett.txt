@@ -205,3 +205,23 @@ ng g //get all
 ng g interceptor error
 
 add app provide
+
+
+Breadcrum
+---------
+xng-brudcrumb - npm
+
+C:\AngularProjects\skinett\client>npm install --save xng-breadcrumb
+
+in http request is finite,It has start and end ,when it completes angular itself call complete method,
+WHat suppose to do when server si busy.
+
+theme
+------
+bootswatch
+
+npminstall bootswatch
+
+spinner
+--------
+npm install ngx-spinner
