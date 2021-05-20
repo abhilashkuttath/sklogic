@@ -225,3 +225,27 @@ npminstall bootswatch
 spinner
 --------
 npm install ngx-spinner
+
+api basket
+---------
+set redis
+
+In memory datastore
+support string,hash,list,set
+key/value store
+fast
+persisit data by take snapshot every minute
+data can be given time to live
+great for caching data.
+
+nuget
+StackExchange.Redis
+2.0.601
+
+choco install redis-64
+
+
+redis-server --port 6380 --slaveof 127.0.0.1 6379
+redis-cli
+redis-cli KEYS'*'
+redis-cli GET<Keyvalue>
